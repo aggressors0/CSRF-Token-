@@ -1,0 +1,24 @@
+
+
+Güvenli olmayan transfer sayfasında :
+
+
+$_SESSION["form_token"] oluşturma kodu yok
+
+POST işlemindeki if (!isset($_POST["token"])...) Token kontrolü yok
+
+<input type="hidden" name="token"> hidden input yok
+
+$_SESSION["form_token"] = bin2hex(random_bytes(32)); Token yenileme yok
+
+
+
+
+saldırı örneği: 
+
+<form action="http://hedef-site.com/transfer.php" method="POST">
+    <input type="hidden" name="isim" value="hacked">
+    <input type="hidden" name="eposta" value="hacked@gmail.com">
+</form>
+<script>document.forms[0].submit();</script>
+
